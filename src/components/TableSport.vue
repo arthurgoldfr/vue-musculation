@@ -9,7 +9,7 @@
         hide-details
       ></v-text-field>
     </v-card-title>
-    <v-data-table :headers="headers" :items="exercices" :items-per-page="5" :search="search">
+    <v-data-table ref="refName" :headers="headers" :items="exercices" :items-per-page="5" :search="search" @current-items="createGraph">
       <template v-slot:item.FocusRegions="{ item }">
         <v-chip v-for="el in item.FocusRegions" :key="el" :color="getColor(el)" dark>{{ el }}</v-chip>
       </template>
@@ -18,11 +18,13 @@
 </template>
 
 <script>
+// import { DataFrame } from 'pandas-js';
 export default {
   name: "TableSport",
   data() {
     return {
       search: "",
+      focusRegions: {},
       headers: [
         {
           text: "Exercices",
@@ -1048,18 +1050,40 @@ export default {
       ]
     };
   },
+  props: ["region_colors"],
   methods: {
     getColor(el) {
-      console.log(el);
+      console.log(this.region_colors)
       if (typeof el === "string") {
-        if (el.includes("Shoulders") || el.includes("Triceps")) return "red";
-        else {
-          return "green";
+        for (const name of Object.keys(this.region_colors)) {
+          if (el.includes(name)) 
+          {
+            return this.region_colors[name];
+          }
         }
-      } else {
-        return "grey";
       }
+    },
+    createGraph() {
+      let items = this.$refs.refName.$children[0].filteredItems;
+      Object.keys(this.region_colors).forEach(name => {
+        this.focusRegions[name] = 0;
+        items.forEach(exercise => {
+          if (exercise.FocusRegions != undefined) {
+            if (exercise.FocusRegions.includes(name)){
+              this.focusRegions[name] ++;
+              //console.log(this.FocusRegions);
+            }
+          }
+        })
+      })
+    console.log("ok")
+    console.log(this.FocusRegions);
+    let value = this.focusRegions;
+    this.$emit('changed', value);
     }
+  },
+  mounted () {
+    this.createGraph()
   }
 };
 </script>
