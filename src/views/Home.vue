@@ -3,6 +3,7 @@
     <h1>{{  }}</h1>
     <tableSport :region_colors="region_color" @changed="onChangedGraph">
     </tableSport>
+    <h1 style="text-align: center;">Muscles distribution</h1>
     <Doughnut
         ref="skillsChart"
         :data="chartData"

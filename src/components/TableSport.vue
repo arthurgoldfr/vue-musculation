@@ -23,7 +23,7 @@ export default {
   name: "TableSport",
   data() {
     return {
-      search: "",
+      debouncedSearch: "",
       focusRegions: {},
       headers: [
         {
@@ -1052,6 +1052,20 @@ export default {
   },
   props: ["region_colors"],
 
+  computed: {
+    search: {
+      get() {
+        return this.debouncedSearch
+      },
+      set(val) {
+        if (this.timeout) clearTimeout(this.timeout)
+          this.timeout = setTimeout(() => {
+            this.debouncedSearch = val
+          }, 300)
+        }
+      }
+    },
+
   methods: {
     getColor(el) {
       //console.log(this.region_colors)
@@ -1077,10 +1091,11 @@ export default {
           }
         })
       })
-    let value = this.focusRegions;
-    this.$emit('changed', value);
+      let value = this.focusRegions;
+      this.$emit('changed', value);
     }
   },
+
   mounted () {
     this.createGraph()
   }
