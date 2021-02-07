@@ -5,8 +5,10 @@
     </tableSport>
     <Doughnut
         ref="skillsChart"
-        :chart-data="chartData"
-        :options="options">
+        :data="chartData"
+        :options="options"
+        :i="i"
+        >
     </Doughnut>
   </div>
 </template>
@@ -31,6 +33,7 @@ export default {
   },
   data () {
     return {
+      i:1,
       options,
       region_color: {
         Chest: "yellow",
@@ -43,20 +46,19 @@ export default {
         Trapezius: "black",
         Back: "cyan"
       },
-      data: {
-      },
       chartData: {
-        datasets: [{label: "Graph", data: this.data, backgroundColor: ["blue", "green", "yellow"]}],
-        labels: ["Triceps", "Back", "Shoulders"]
+        labels: ["Triceps", "Back", "Shoulders"],
+        datasets: [{label: "Graph", data: this.data, backgroundColor: ["blue", "green", "yellow"]}]
       }
     }
   },
   methods: {
     onChangedGraph (value) {
+      this.i = this.i +1;
       this.data = value;
       this.chartData['datasets'] = [{label: "First Graph", data: Object.values(this.data), backgroundColor: Object.values(this.region_color)}];
       this.chartData['labels'] = Object.keys(this.region_color);
-    }
-  }
+    },
+  },
 }
 </script>

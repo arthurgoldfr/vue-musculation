@@ -1051,9 +1051,10 @@ export default {
     };
   },
   props: ["region_colors"],
+
   methods: {
     getColor(el) {
-      console.log(this.region_colors)
+      //console.log(this.region_colors)
       if (typeof el === "string") {
         for (const name of Object.keys(this.region_colors)) {
           if (el.includes(name)) 
@@ -1063,6 +1064,7 @@ export default {
         }
       }
     },
+
     createGraph() {
       let items = this.$refs.refName.$children[0].filteredItems;
       Object.keys(this.region_colors).forEach(name => {
@@ -1071,13 +1073,10 @@ export default {
           if (exercise.FocusRegions != undefined) {
             if (exercise.FocusRegions.includes(name)){
               this.focusRegions[name] ++;
-              //console.log(this.FocusRegions);
             }
           }
         })
       })
-    console.log("ok")
-    console.log(this.FocusRegions);
     let value = this.focusRegions;
     this.$emit('changed', value);
     }
