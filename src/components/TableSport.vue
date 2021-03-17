@@ -1061,7 +1061,7 @@ export default {
         if (this.timeout) clearTimeout(this.timeout)
           this.timeout = setTimeout(() => {
             this.debouncedSearch = val
-          }, 300)
+          }, 2000)
         }
       }
     },

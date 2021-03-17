@@ -1,65 +1,37 @@
 <template>
   <div class="home">
-    <h1>{{  }}</h1>
-    <tableSport :region_colors="region_color" @changed="onChangedGraph">
-    </tableSport>
-    <h1 style="text-align: center;">Muscles distribution</h1>
-    <Doughnut
-        ref="skillsChart"
-        :data="chartData"
-        :options="options"
-        :i="i"
-        >
-    </Doughnut>
+  <img src="@/assets/musculation.jpg" alt="Snow" style="height:100%; width:100%">
+  <h1 class="centered">
+    Hello {{ user }}
+  </h1>
   </div>
 </template>
 
-<script>
-import Doughnut from "@/components/Doughnut.vue";
-import TableSport from "@/components/TableSport.vue";
+<style>
+  div .home {
+    position: relative;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+  }
+  .centered {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-const options = {
-  responsive: true,
-  maintainAspectRatio: false,
-  animation: {
-    animateRotate: false,
-  },
-};
+</style>
+
+<script>
+
 export default {
   name: 'Home',
-  components:
-  {
-   Doughnut,
-   TableSport
-  },
-  data () {
+    data() {
     return {
-      i:1,
-      options,
-      region_color: {
-        Chest: "yellow",
-        Shoulders: "red", 
-        Triceps: "blue",
-        Legs: "grey",
-        Soleus: "green",
-        Glutes: "magenta",
-        Forearm: "gray",
-        Trapezius: "black",
-        Back: "cyan"
-      },
-      chartData: {
-        labels: ["Triceps", "Back", "Shoulders"],
-        datasets: [{label: "Graph", data: this.data, backgroundColor: ["blue", "green", "yellow"]}]
-      }
+      user : "Jean"
     }
-  },
-  methods: {
-    onChangedGraph (value) {
-      this.i = this.i +1;
-      this.data = value;
-      this.chartData['datasets'] = [{label: "First Graph", data: Object.values(this.data), backgroundColor: Object.values(this.region_color)}];
-      this.chartData['labels'] = Object.keys(this.region_color);
-    },
-  },
+  }
 }
 </script>

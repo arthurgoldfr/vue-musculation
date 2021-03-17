@@ -2,12 +2,13 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
+      color="dark"
       dark
       >
       <div class="links">
         <router-link class="router" tag="a" to="/">Home</router-link>  |  
-        <router-link class="router" tag="a" to="/About">About</router-link>
+        <router-link class="router" tag="a" to="/About">About</router-link>  |  
+        <router-link class="router" tag="a" to="/Stats">Statistics</router-link>
       </div>
     </v-app-bar>
     <v-main>

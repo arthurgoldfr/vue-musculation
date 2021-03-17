@@ -33,8 +33,6 @@ export default {
     i: function() 
     { console.log("hey")
       console.log(this.chartData)           
-      //this._chart.destroy();
-      //this.renderChart(this.data, this.options);
       this.renderDoughnutChart()  
     }
   }
