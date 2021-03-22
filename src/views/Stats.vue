@@ -37,15 +37,15 @@ export default {
       i:1,
       options,
       region_color: {
-        Chest: "yellow",
-        Shoulders: "red", 
-        Triceps: "blue",
-        Legs: "grey",
-        Soleus: "green",
-        Glutes: "magenta",
-        Forearm: "gray",
-        Trapezius: "black",
-        Back: "cyan"
+        Chest: "Gold",
+        Shoulders: "#8B0000", 
+        Triceps: "#E6E6FA",
+        Legs: "#00008B",
+        Soleus: "MediumSpringGreen",
+        Glutes: "#E9967A",
+        Forearm: "#ADFF2F",
+        Trapezius: "#556B2F",
+        Back: " #2F4F4F"
       },
       chartData: {
         labels: ["Triceps", "Back", "Shoulders"],
